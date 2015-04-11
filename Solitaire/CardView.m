@@ -12,6 +12,10 @@
 
 @implementation CardView
 
+-(NSString*)description {
+    return [NSString stringWithFormat:@"currentCard%@",_card];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     if ((self = [super initWithFrame:frame]))
@@ -35,6 +39,22 @@
 
 - (void)loadFront
 {
+    
+    
+        _frontImageView = [[UIImageView alloc] initWithFrame:self.bounds];
+        [self addSubview:_frontImageView];
+        
+        NSLog(@"self card: %@",[self card]);
+        //TODO select front image here
+    
+     
+        
+        NSString *suit = @"clubs";
+        NSString *value = @"2";
+        NSString *filename = [NSString stringWithFormat:@"%@_of_%@", value, suit];
+        _frontImageView.image = [UIImage imageNamed:filename];
+        [self addSubview:_frontImageView];
+        NSLog(@"self.card loadFront %@",self.card);
 
 }
 
@@ -42,24 +62,21 @@
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
     _currentPoint = [[touches anyObject] locationInView:self];
-    NSLog(@"CurrentPoint: %@",NSStringFromCGPoint(_currentPoint));
     
     [self.superview bringSubviewToFront:self];
     _lastLocation = [self center];
-    NSLog(@"lastLocation: %@",NSStringFromCGPoint(_lastLocation));
-    
+    //[self loadFront];
 }
 
 - (void) touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
 {
     
     CGPoint touchedPoint = [[touches anyObject] locationInView:self];
-    NSLog(@"touchedPoint: %@",NSStringFromCGPoint(touchedPoint));
-    
+    //NSLog(@"touchedPoint: %@",NSStringFromCGPoint(touchedPoint));
+
     
     CGPoint newPoint = CGPointMake(self.center.x + (touchedPoint.x - _currentPoint.x),
                                    self.center.y + (touchedPoint.y - _currentPoint.y));
-    NSLog(@"newPoint: %@",NSStringFromCGPoint(newPoint));
     
     
     self.center = newPoint;
@@ -67,7 +84,7 @@
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"self.centre %@",NSStringFromCGPoint(self.center));
+
     CGPoint newPoint = self.center;
     NSArray * possibleXPositions = @[@325,@275,@225,@175,@125,@75,@25];
     

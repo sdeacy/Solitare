@@ -28,7 +28,8 @@
     //upturned current card
     CardView *currentCardView = [[CardView alloc]initWithFrame:CGRectMake(75, 20, 50, 70)];
     Card *card = [[Card alloc]initWithSuit:@"c" andFace:2];
-    
+    currentCardView.card = card;
+    [currentCardView loadFront];
     [self.view addSubview:currentCardView];
     
     //ace positions
@@ -42,19 +43,19 @@
     CGSize size = self.view.bounds.size;
     NSInteger width = size.width;
     NSInteger height = size.height;
-    NSLog(@"width: %ld,height: %ld",(long)width,(long)height);
-    NSLog(@"self.view.bounds: %@",NSStringFromCGRect(self.view.bounds));
+    //NSLog(@"width: %ld,height: %ld",(long)width,(long)height);
+   // NSLog(@"self.view.bounds: %@",NSStringFromCGRect(self.view.bounds));
 
     
     
     //divide screen into 7 columns
     
     CGFloat columnSize = 50;
-    NSLog(@"col size: %f",columnSize);
+    //NSLog(@"col size: %f",columnSize);
     
     NSArray * possibleXPositions = @[@325,@275,@225,@175,@125,@75,@25];
     for (NSString *item in possibleXPositions) {
-        NSLog(@"%@", item);
+      //  NSLog(@"%@", item);
     }
     int numberOfCardsToDeal = 7;
     while (numberOfCardsToDeal>0) {

@@ -16,7 +16,6 @@
 @property  CGPoint currentPoint;
 @property (nonatomic, strong) UIImageView *backImageView;
 @property (nonatomic, strong) UIImageView *frontImageView;
-
-
+-(void)loadFront;
 
 @end

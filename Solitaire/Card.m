@@ -17,8 +17,7 @@
     
     _suit = suit;
     _face = face;
-    if ([_suit isEqualToString:
-         @"h"] ||  [_suit isEqualToString:@"d"]) {
+    if ([_suit isEqualToString:@"h"] ||  [_suit isEqualToString:@"d"]) {
         _red = true;
     }
     else{
