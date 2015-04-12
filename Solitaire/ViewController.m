@@ -21,20 +21,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor greenColor];
+    
+    
+    //draw the card back representing the deck
     CardView *stack = [[CardView alloc]initWithFrame:CGRectMake(20, 20, 50, 70)];
     [self.view addSubview:stack ];
 
+    Deck *deck = [[Deck alloc]init];
     
     //upturned current card
     CardView *currentCardView = [[CardView alloc]initWithFrame:CGRectMake(75, 20, 50, 70)];
-    Card *card = [[Card alloc]initWithSuit:@"c" andFace:2];
+    //Card *card = [[Card alloc]initWithSuit:@"hearts" andFace:7];
+    
+    Card *card = [deck draw];
     currentCardView.card = card;
     [currentCardView loadFront];
     [self.view addSubview:currentCardView];
     
     //ace positions
     
-    for(int x = 150 ; x < 370; x = x+55){
+    for(int x = 175 ; x <= 325; x = x+50){
         CardView *aceCardView = [[CardView alloc]initWithFrame:CGRectMake(x, 20, 50, 70)];
         [self.view addSubview:aceCardView];
     }
@@ -64,16 +71,20 @@
         {
             CGFloat pointX = x;
             CGFloat pointY = 100;
-            for (int j = 0 ; j < numberOfCardsToDeal ; j++)
+            for (int j = numberOfCardsToDeal ; j >= 0  ; j--)
             {
                 pointY = pointY + 20;
                 CardView *newView = [[CardView alloc] initWithFrame: CGRectMake(pointX, pointY, 50, 70)];
+                Card *card = [deck draw];
+                newView.card = card;
+                [newView loadFront];
                 [self.view addSubview:newView];
+              
+                //[self.view addSubview:newView];
             }
             numberOfCardsToDeal--;
         }
     }
-
 }
 
 

@@ -16,6 +16,8 @@
 @property  CGPoint currentPoint;
 @property (nonatomic, strong) UIImageView *backImageView;
 @property (nonatomic, strong) UIImageView *frontImageView;
+@property (nonatomic,assign) bool moveable;
+@property (nonatomic,assign)    bool lastCardInRow;
 -(void)loadFront;
 
 @end
